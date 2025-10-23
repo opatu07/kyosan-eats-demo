@@ -27,7 +27,7 @@
 2. リポジトリをチェックアウトし、プロジェクトルートへ移動:
 
 ```bash
-git clone ~
+git clone https://github.com/opatu07/kyosan-eats-demo.git
 ```
 ```bash
 cd kyosan-eats-demo
