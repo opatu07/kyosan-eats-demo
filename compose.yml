@@ -1,0 +1,38 @@
+services:
+  backend:
+    # Dockerfileの位置を指定
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    # ホストのディレクトリをコンテナ内にマウント(共有)する
+    volumes:
+      - ./backend:/app
+    # ポートフォワーディングの設定 ホストとコンテナのポートを紐づける
+    ports:
+      - "8888:8000"
+    # .env から環境変数を読み込む（Supabase などの秘密情報は .env に置く）
+    env_file:
+      - .env
+    # 環境変数の設定 
+    environment:
+      - PYTHONUNBUFFERED=1
+      - UVICORN_RELOAD=true
+  frontend:
+   # Dockerfileの位置を指定
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+   # ホストのディレクトリをコンテナ内にマウント(共有)する
+    volumes:
+      - ./frontend:/src
+      - node_modules:/src/node_modules
+   # ポートフォワーディングの設定 ホストとコンテナのポートを紐づける
+    ports:
+      - "5173:5173"
+   # 環境変数の設定 開発時、本番時で切り替え必須
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+
+volumes:
+  node_modules:

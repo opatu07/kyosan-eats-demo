@@ -1,0 +1,20 @@
+# React (Vite) dev on Node 20 (Debian slim)
+# bash が同梱されているため、`docker compose exec web bash` も利用可能
+FROM node:20
+
+# gitをインストール（必要な場合）
+RUN apt-get update && apt-get install -y git 
+
+# アプリ作業ディレクトリ
+WORKDIR /src
+
+# エントリポイントスクリプトを配置
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Vite の開発ポート
+EXPOSE 5173
+
+# ENTRYPOINT で初期化＆依存解決、CMD はデフォルト起動コマンド
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

@@ -1,0 +1,28 @@
+# Reduce build context size
+.git
+.gitignore
+.vscode
+.DS_Store
+
+# Node artifacts
+node_modules
+app/node_modules
+dist
+app/dist
+coverage
+.cache
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Compose files are fine to send; keep Dockerfile in context
+.dockerignore
+Dockerfile
+docker-compose.yml
