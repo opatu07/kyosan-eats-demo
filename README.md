@@ -54,8 +54,8 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 # FastAPI を直接起動して動作確認
-uvicorn app:app --reload --host 0.0.0.0 --port 8000
-# ブラウザで http://localhost:8000/docs を確認
+uvicorn app:app --reload --host 0.0.0.0 --port 8888
+# ブラウザで http://localhost:8888/docs を確認
 ```
 
 成功基準:
@@ -79,8 +79,8 @@ docker compose exec backend bash
 ```
 
 コンテナ起動後の確認:
-- ブラウザで `http://localhost:8000` を開く
-- ブラウザで `http://localhost:8000/docs` を開く
+- ブラウザで `http://localhost:8888` を開く
+- ブラウザで `http://localhost:8888/docs` を開く
 - `docker compose ps` で `backend` が `Up` になっている
 
 #### 4) Supabase 連携の簡易テスト
